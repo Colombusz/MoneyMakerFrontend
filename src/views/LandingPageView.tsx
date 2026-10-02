@@ -45,14 +45,14 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
               <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <Smartphone className="w-4 h-4 shrink-0 text-dark-primaryLight" />
               <span className="truncate">
-                <strong className="font-semibold">MoneySaver Android App:</strong> Production APK (v1.0.0, 90 MB) is ready for direct installation!
+                <strong className="font-semibold">MoneyMaker Android App:</strong> Production APK (v1.0.0, 90 MB) is ready for direct installation!
               </span>
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
               <a
-                href="/moneysaver.apk"
-                download="MoneySaver.apk"
+                href="/moneymaker.apk"
+                download="MoneyMaker.apk"
                 className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-dark-primaryDark font-bold rounded-full text-xs shadow-sm hover:bg-slate-100 transition-transform active:scale-95"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -79,7 +79,7 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
             </div>
             <div>
               <span className="text-xl font-bold bg-gradient-to-r from-dark-primary to-dark-primaryDark bg-clip-text text-transparent">
-                MoneySaver
+                MoneyMaker
               </span>
               <span className="hidden sm:inline-block ml-2 text-xs font-medium px-2 py-0.5 rounded-full bg-dark-primary/10 text-dark-primary">
                 v1.0.0
@@ -130,7 +130,7 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-light-textSecondary dark:text-dark-textSecondary max-w-2xl mx-auto leading-relaxed">
-            MoneySaver is a modern, privacy-focused financial companion designed for solo savers and couples.
+            MoneyMaker is a modern, privacy-focused financial companion designed for solo savers and couples.
             Track multiple accounts, manage recurring bills, set shared goals, and stay in sync across Web and Android — even when completely offline.
           </p>
 
@@ -186,8 +186,8 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
             <Smartphone className="w-4 h-4 text-emerald-500" />
             <span>Looking for the mobile app?</span>
             <a
-              href="/moneysaver.apk"
-              download="MoneySaver.apk"
+              href="/moneymaker.apk"
+              download="MoneyMaker.apk"
               className="text-dark-primary font-semibold hover:underline inline-flex items-center gap-1"
             >
               Download Android APK (90 MB)
@@ -291,14 +291,14 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
                 Production Standalone APK
               </div>
               <h3 className="text-2xl font-bold text-light-text dark:text-dark-text">
-                Install MoneySaver on Android
+                Install MoneyMaker on Android
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-light-textSecondary dark:text-dark-textSecondary leading-relaxed">
                 Enjoy lightning-fast SQLite local storage, native adaptive icons, seamless biometrics, and offline data sync directly on your Android phone.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-light-textMuted dark:text-dark-textMuted">
-                <span>• File: <code>moneysaver.apk</code></span>
+                <span>• File: <code>moneymaker.apk</code></span>
                 <span>• Size: <strong>~90 MB</strong></span>
                 <span>• Android 8.0+ supported</span>
               </div>
@@ -306,8 +306,8 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
 
             <div className="shrink-0 flex flex-col items-center gap-2">
               <a
-                href="/moneysaver.apk"
-                download="MoneySaver.apk"
+                href="/moneymaker.apk"
+                download="MoneyMaker.apk"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg hover:shadow-emerald-500/25 transition-all text-sm active:scale-95"
               >
                 <Download className="w-5 h-5" />
@@ -329,7 +329,7 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
               <Wallet className="w-4 h-4" />
             </div>
             <span className="text-sm font-bold text-light-text dark:text-dark-text">
-              MoneySaver Personal Finance
+              MoneyMaker Personal Finance
             </span>
           </div>
 
@@ -342,13 +342,13 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
               Sign In
             </button>
             <span>•</span>
-            <a href="/moneysaver.apk" download="MoneySaver.apk" className="text-emerald-500 font-semibold hover:underline">
+            <a href="/moneymaker.apk" download="MoneyMaker.apk" className="text-emerald-500 font-semibold hover:underline">
               Download APK
             </a>
           </div>
 
           <p className="text-xs text-light-textMuted dark:text-dark-textMuted">
-            &copy; {new Date().getFullYear()} MoneySaver. Offline-first & cloud synced.
+            &copy; {new Date().getFullYear()} MoneyMaker. Offline-first & cloud synced.
           </p>
         </div>
       </footer>

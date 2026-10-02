@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div className="hidden sm:block">
               <span className="text-lg font-bold bg-gradient-to-r from-dark-primary to-dark-primaryDark bg-clip-text text-transparent">
-                MoneySaver
+                MoneyMaker
               </span>
             </div>
           </div>
@@ -90,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2">
             {/* Direct APK Download in Navbar */}
             <a
-              href="/moneysaver.apk"
-              download="MoneySaver.apk"
+              href="/moneymaker.apk"
+              download="MoneyMaker.apk"
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 transition-all"
               title="Download Android APK (90 MB)"
             >
