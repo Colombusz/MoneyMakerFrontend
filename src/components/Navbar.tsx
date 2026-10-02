@@ -11,13 +11,14 @@ import {
   LogIn,
   LogOut,
   Wallet,
-  Smartphone
+  Smartphone,
+  Palmtree
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { IconButton, Pill } from '../shared/components/ui';
 
-export type NavTab = 'dashboard' | 'calendar' | 'recurring' | 'goals' | 'partner';
+export type NavTab = 'dashboard' | 'calendar' | 'recurring' | 'goals' | 'partner' | 'vacation' | 'past-vacations';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -42,7 +43,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'calendar' as NavTab, label: 'Calendar', icon: CalendarIcon },
     { id: 'recurring' as NavTab, label: 'Recurring', icon: Repeat },
     { id: 'goals' as NavTab, label: 'Goals', icon: Target },
-    { id: 'partner' as NavTab, label: 'Partner', icon: Users }
+    { id: 'partner' as NavTab, label: 'Partner', icon: Users },
+    { id: 'vacation' as NavTab, label: 'Vacation', icon: Palmtree }
   ];
 
   return (

@@ -5,7 +5,8 @@ import {
   Repeat,
   Target,
   Users,
-  Plus
+  Plus,
+  Palmtree
 } from 'lucide-react';
 import { NavTab } from './Navbar';
 
@@ -24,9 +25,9 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
     { id: 'dashboard' as NavTab, label: 'Home', icon: LayoutDashboard },
     { id: 'calendar' as NavTab, label: 'Calendar', icon: CalendarIcon },
     { id: 'add' as const, label: 'Add', icon: Plus, isAction: true },
-    { id: 'recurring' as NavTab, label: 'Bills', icon: Repeat },
     { id: 'goals' as NavTab, label: 'Goals', icon: Target },
-    { id: 'partner' as NavTab, label: 'Partner', icon: Users }
+    { id: 'partner' as NavTab, label: 'Partner', icon: Users },
+    { id: 'vacation' as NavTab, label: 'Vacation', icon: Palmtree }
   ];
 
   return (
