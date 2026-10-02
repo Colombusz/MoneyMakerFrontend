@@ -34,7 +34,7 @@ export const CalendarDayCell: React.FC<CalendarDayCellProps> = ({
           ? 'ring-2 ring-blue-500 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30'
           : isToday
             ? 'border-blue-300 dark:border-blue-700 bg-blue-50/20 dark:bg-blue-950/10'
-            : 'border-gray-100 dark:border-gray-800/80 bg-white dark:bg-gray-850 hover:bg-gray-50 dark:hover:bg-gray-800'
+            : 'border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface hover:bg-light-card dark:hover:bg-dark-card'
       }`}
     >
       <div className="flex items-center justify-between w-full">
@@ -42,7 +42,7 @@ export const CalendarDayCell: React.FC<CalendarDayCellProps> = ({
           className={`text-xs font-semibold ${
             isToday
               ? 'w-5 h-5 flex items-center justify-center rounded-full bg-blue-600 text-white'
-              : 'text-gray-700 dark:text-gray-300'
+              : 'text-light-text dark:text-dark-text'
           }`}
         >
           {dayNum}

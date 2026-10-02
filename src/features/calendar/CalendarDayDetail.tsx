@@ -172,7 +172,7 @@ export const CalendarDayDetail: React.FC<CalendarDayDetailProps> = ({
               return (
                 <div
                   key={tx.id}
-                  className="flex items-center justify-between p-2.5 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-850"
+                  className="flex items-center justify-between p-2.5 rounded-lg border border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div
@@ -189,10 +189,10 @@ export const CalendarDayDetail: React.FC<CalendarDayDetailProps> = ({
                       {tx.type === 'transfer' && <ArrowLeftRight className="w-4 h-4" />}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">
+                      <p className="text-xs font-medium text-light-text dark:text-dark-text truncate">
                         {txTitle}
                       </p>
-                      <p className="text-[10px] text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-[10px] text-light-textMuted dark:text-dark-textMuted truncate">
                         {account?.name} {destAccount ? `→ ${destAccount.name}` : ''}
                         {detail ? ` • ${detail}` : ''}
                       </p>
@@ -231,14 +231,14 @@ export const CalendarDayDetail: React.FC<CalendarDayDetailProps> = ({
                 className="flex items-center justify-between p-2.5 rounded-lg border border-purple-100 dark:border-purple-900/40 bg-purple-50/30 dark:bg-purple-950/10"
               >
                 <div className="min-w-0">
-                  <p className="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">
+                  <p className="text-xs font-medium text-light-text dark:text-dark-text truncate">
                     {rec.notes || 'Recurring Bill'}
                   </p>
                   <span className="text-[10px] uppercase font-semibold text-purple-600 dark:text-purple-400">
                     {rec.status}
                   </span>
                 </div>
-                <span className="text-xs font-bold text-gray-900 dark:text-gray-100">
+                <span className="text-xs font-bold text-light-text dark:text-dark-text">
                   {formatCentavosToPHP(rec.amountCentavos)}
                 </span>
               </div>
@@ -263,8 +263,8 @@ export const CalendarDayDetail: React.FC<CalendarDayDetailProps> = ({
       {/* Desktop Panel */}
       <div className="hidden sm:block">
         <Card>
-          <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-gray-700/60 mb-3">
-            <h3 className="text-sm font-semibold flex items-center gap-2 text-gray-900 dark:text-gray-100">
+          <div className="flex items-center justify-between pb-3 border-b border-light-border dark:border-dark-border mb-3">
+            <h3 className="text-sm font-semibold flex items-center gap-2 text-light-text dark:text-dark-text">
               <CalendarIcon className="w-4 h-4 text-blue-600" />
               {formatDisplayDate(selectedDay)}
             </h3>
