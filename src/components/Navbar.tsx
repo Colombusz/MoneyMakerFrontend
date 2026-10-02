@@ -10,7 +10,8 @@ import {
   Moon,
   LogIn,
   LogOut,
-  Wallet
+  Wallet,
+  Smartphone
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -23,13 +24,15 @@ interface NavbarProps {
   setActiveTab: (tab: NavTab) => void;
   onOpenAddTransaction: () => void;
   onOpenAuth: () => void;
+  onOpenLanding?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
   onOpenAddTransaction,
-  onOpenAuth
+  onOpenAuth,
+  onOpenLanding
 }) => {
   const { user, logout } = useAuth();
   const { isDark, toggleTheme } = useTheme();
@@ -85,6 +88,28 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Header Actions */}
           <div className="flex items-center gap-2">
+            {/* Direct APK Download in Navbar */}
+            <a
+              href="/moneysaver.apk"
+              download="MoneySaver.apk"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 transition-all"
+              title="Download Android APK (90 MB)"
+            >
+              <Smartphone className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Get APK</span>
+            </a>
+
+            {/* About / Landing Page toggle */}
+            {onOpenLanding && (
+              <button
+                onClick={onOpenLanding}
+                className="hidden md:inline-flex items-center px-2.5 py-1.5 rounded-xl border border-light-border dark:border-dark-border hover:bg-light-surface dark:hover:bg-dark-surface text-xs font-medium text-light-textSecondary dark:text-dark-textSecondary transition-all"
+                title="View Landing Page"
+              >
+                About
+              </button>
+            )}
+
             {/* Dark / Light Mode Toggle */}
             <IconButton
               icon={isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
@@ -110,13 +135,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               </div>
             ) : (
-              <button
-                onClick={onOpenAuth}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-light-border dark:border-dark-border hover:bg-light-surface dark:hover:bg-dark-surface text-sm font-medium text-light-text dark:text-dark-text transition-all"
-              >
-                <LogIn className="w-4 h-4 text-dark-primary" />
-                <span>Log In</span>
-              </button>
+              <div className="flex items-center gap-1.5">
+                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400 text-[11px] font-medium">
+                  Guest
+                </span>
+                <button
+                  onClick={onOpenAuth}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-light-border dark:border-dark-border hover:bg-light-surface dark:hover:bg-dark-surface text-sm font-medium text-light-text dark:text-dark-text transition-all"
+                >
+                  <LogIn className="w-4 h-4 text-dark-primary" />
+                  <span>Log In</span>
+                </button>
+              </div>
             )}
           </div>
         </div>

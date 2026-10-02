@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, NavTab } from './components/Navbar';
 import { BottomTabBar } from './components/BottomTabBar';
 import { DashboardView } from './views/DashboardView';
@@ -6,6 +6,7 @@ import { CalendarView } from './views/CalendarView';
 import { RecurringView } from './views/RecurringView';
 import { GoalsView } from './views/GoalsView';
 import { PartnerView } from './views/PartnerView';
+import { LandingPageView } from './views/LandingPageView';
 import { AddTransactionModal } from './components/AddTransactionModal';
 import { AddAccountModal } from './components/AddAccountModal';
 import { AddRecurringModal } from './components/AddRecurringModal';
@@ -15,9 +16,13 @@ import { AuthModal } from './components/AuthModal';
 import { CashQuickSpendModal } from './features/accounts/CashQuickSpendModal';
 import { Account } from './types';
 import { useAppState } from './hooks/useAppState';
+import { getStoredAccessToken } from './services/api';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
+  const [showLanding, setShowLanding] = useState<boolean>(() => {
+    return !getStoredAccessToken();
+  });
 
   // Modal Visibility States
   const [isAddTxOpen, setIsAddTxOpen] = useState(false);
@@ -57,6 +62,24 @@ export const App: React.FC = () => {
     handleUnlinkPartner
   } = useAppState();
 
+  useEffect(() => {
+    if (user) {
+      setShowLanding(false);
+    }
+  }, [user]);
+
+  if (showLanding && !user) {
+    return (
+      <>
+        <LandingPageView
+          onChooseGuest={() => setShowLanding(false)}
+          onOpenAuth={() => setIsAuthOpen(true)}
+        />
+        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-[100dvh] flex flex-col bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
       {/* Navigation Header */}
@@ -65,6 +88,7 @@ export const App: React.FC = () => {
         setActiveTab={setActiveTab}
         onOpenAddTransaction={() => setIsAddTxOpen(true)}
         onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenLanding={() => setShowLanding(true)}
       />
 
       {/* Main Content Area */}
