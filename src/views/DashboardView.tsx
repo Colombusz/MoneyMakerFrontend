@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wallet, Layers, Plus, Zap, Banknote } from 'lucide-react';
+import { Wallet, Layers, Plus, Zap, Banknote, TrendingUp } from 'lucide-react';
 import { Account, Transaction, Category } from '../types';
 import { formatCentavos } from '../shared/utils/currency';
 import { NetWorthBanner } from '../features/dashboard/NetWorthBanner';
@@ -15,6 +15,7 @@ interface DashboardViewProps {
   onOpenAddAccount: () => void;
   onDeleteTransaction: (id: string) => Promise<void>;
   onOpenCashQuickSpend?: (account: Account) => void;
+  onNavigateStocks?: () => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
@@ -25,7 +26,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onOpenAddTransaction,
   onOpenAddAccount,
   onDeleteTransaction,
-  onOpenCashQuickSpend
+  onOpenCashQuickSpend,
+  onNavigateStocks
 }) => {
   const totalBalanceCentavos = accounts.reduce((acc, a) => acc + a.currentBalanceCentavos, 0);
 
@@ -57,6 +59,56 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         monthNetCentavos={monthNetCentavos}
         currency={currency}
       />
+
+      {/* US Stocks Monitoring & Prediction Highlight Card */}
+      {onNavigateStocks && (
+        <div
+          onClick={onNavigateStocks}
+          className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-indigo-500/10 border-2 border-emerald-500/30 hover:border-emerald-500 transition-all cursor-pointer shadow-subtle dark:shadow-subtle-dark hover:-translate-y-0.5"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 shrink-0">
+                <TrendingUp className="w-6 h-6 stroke-[2.5]" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base font-bold text-light-text dark:text-dark-text">
+                    US Stocks Monitoring & Prediction
+                  </h3>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-bold">
+                    Alpha Vantage Live
+                  </span>
+                </div>
+                <p className="text-xs text-light-textSecondary dark:text-dark-textSecondary mt-0.5">
+                  Track real-time quotes, interactive price trend forecasts, and multi-factor quantitative AI predictions.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 self-end sm:self-center">
+              <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold mr-2">
+                <span className="px-2 py-1 rounded-lg bg-light-surface/80 dark:bg-dark-surface/80 border border-light-border dark:border-dark-border text-emerald-600 dark:text-emerald-400">
+                  AAPL $333.69 (+1.02%)
+                </span>
+                <span className="px-2 py-1 rounded-lg bg-light-surface/80 dark:bg-dark-surface/80 border border-light-border dark:border-dark-border text-emerald-600 dark:text-emerald-400">
+                  NVDA $137.45 (+1.89%)
+                </span>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavigateStocks();
+                }}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 transition-all shrink-0"
+              >
+                <span>Explore Stocks</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Accounts Section */}
       <div>

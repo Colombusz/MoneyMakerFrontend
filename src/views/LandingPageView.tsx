@@ -18,7 +18,8 @@ import {
   Cloud,
   ChevronRight,
   X,
-  ExternalLink
+  ExternalLink,
+  TrendingUp
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { Button } from '../shared/components/ui';
@@ -26,11 +27,13 @@ import { Button } from '../shared/components/ui';
 export interface LandingPageViewProps {
   onChooseGuest: () => void;
   onOpenAuth: () => void;
+  onOpenStocks?: () => void;
 }
 
 export const LandingPageView: React.FC<LandingPageViewProps> = ({
   onChooseGuest,
-  onOpenAuth
+  onOpenAuth,
+  onOpenStocks
 }) => {
   const { isDark, toggleTheme } = useTheme();
   const [showBanner, setShowBanner] = useState(true);
@@ -96,6 +99,16 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
               {isDark ? '☀️' : '🌙'}
             </button>
 
+            {onOpenStocks && (
+              <button
+                onClick={onOpenStocks}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-bold rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-all shadow-xs"
+              >
+                <TrendingUp className="w-4 h-4 stroke-[2.5]" />
+                <span>US Stocks</span>
+              </button>
+            )}
+
             <button
               onClick={onChooseGuest}
               className="px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text hover:bg-light-surface dark:hover:bg-dark-surface transition-colors"
@@ -134,7 +147,7 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
             Track multiple accounts, manage recurring bills, set shared goals, and stay in sync across Web and Android — even when completely offline.
           </p>
 
-          {/* === THE ENTRY GATE (CHOOSE GUEST OR LOGIN) === */}
+          {/* === THE ENTRY GATE (CHOOSE GUEST, LOGIN, OR STOCKS) === */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             {/* OPTION 1: GUEST */}
             <div
@@ -179,6 +192,38 @@ export const LandingPageView: React.FC<LandingPageViewProps> = ({
                 </span>
               </div>
             </div>
+
+            {/* OPTION 3: US STOCKS MONITORING & PREDICTION */}
+            {onOpenStocks && (
+              <div
+                onClick={onOpenStocks}
+                className="col-span-1 sm:col-span-2 group text-left p-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-indigo-500/10 border-2 border-emerald-500/30 hover:border-emerald-500 transition-all cursor-pointer shadow-subtle dark:shadow-subtle-dark hover:-translate-y-0.5"
+              >
+                <div className="flex items-center justify-between flex-wrap sm:flex-nowrap gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 shrink-0">
+                      <TrendingUp className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-light-text dark:text-dark-text">
+                          US Stocks Monitoring & Prediction
+                        </h3>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-bold">
+                          LIVE
+                        </span>
+                      </div>
+                      <p className="text-xs text-light-textSecondary dark:text-dark-textSecondary mt-0.5">
+                        Live Alpha Vantage telemetry, Wall Street price targets, and multi-factor quantitative AI forecasting.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0">
+                    Launch Stocks &rarr;
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Quick APK CTA Link */}

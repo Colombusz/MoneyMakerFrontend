@@ -11,13 +11,15 @@ import {
   LogIn,
   LogOut,
   Wallet,
-  Smartphone
+  Smartphone,
+  Palmtree,
+  TrendingUp
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { IconButton, Pill } from '../shared/components/ui';
 
-export type NavTab = 'dashboard' | 'calendar' | 'recurring' | 'goals' | 'partner';
+export type NavTab = 'dashboard' | 'calendar' | 'recurring' | 'goals' | 'partner' | 'stocks' | 'vacation' | 'past-vacations';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -39,10 +41,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'dashboard' as NavTab, label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'stocks' as NavTab, label: 'US Stocks', icon: TrendingUp },
     { id: 'calendar' as NavTab, label: 'Calendar', icon: CalendarIcon },
     { id: 'recurring' as NavTab, label: 'Recurring', icon: Repeat },
     { id: 'goals' as NavTab, label: 'Goals', icon: Target },
-    { id: 'partner' as NavTab, label: 'Partner', icon: Users }
+    { id: 'partner' as NavTab, label: 'Partner', icon: Users },
+    { id: 'vacation' as NavTab, label: 'Vacation', icon: Palmtree }
   ];
 
   return (
@@ -64,39 +68,59 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Desktop Navigation Links (>=1024px) */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* Desktop & Tablet Navigation Links (>=768px) */}
+          <nav className="hidden md:flex items-center gap-1 overflow-x-auto scrollbar-none">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
+              const isStocks = item.id === 'stocks';
+
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
+                  className={`flex items-center gap-1.5 lg:gap-2 px-2.5 lg:px-3 py-2 rounded-xl text-xs lg:text-sm font-medium transition-all shrink-0 ${
                     isActive
-                      ? 'bg-dark-primary dark:bg-dark-primary text-white font-semibold'
+                      ? isStocks
+                        ? 'bg-emerald-500 text-white font-bold shadow-sm'
+                        : 'bg-dark-primary dark:bg-dark-primary text-white font-semibold'
+                      : isStocks
+                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20 hover:bg-emerald-500/20'
                       : 'text-light-textSecondary dark:text-dark-textSecondary hover:text-light-text dark:hover:text-dark-text hover:bg-light-surface dark:hover:bg-dark-surface'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span className="hidden sm:inline">{item.label}</span>
+                  <Icon className="w-4 h-4 shrink-0" />
+                  <span>{item.label}</span>
                 </button>
               );
             })}
           </nav>
 
           {/* Right Header Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Direct US Stocks button in Header (Always visible on mobile & small screens where nav is hidden) */}
+            <button
+              onClick={() => setActiveTab('stocks')}
+              className={`md:hidden inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+                activeTab === 'stocks'
+                  ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm'
+                  : 'bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+              }`}
+              title="US Stocks Monitoring & Prediction"
+            >
+              <TrendingUp className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>US Stocks</span>
+            </button>
+
             {/* Direct APK Download in Navbar */}
             <a
               href="/moneymaker.apk"
               download="MoneyMaker.apk"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-500/20 transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-500/10 hover:bg-slate-500/20 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-500/20 transition-all"
               title="Download Android APK (90 MB)"
             >
               <Smartphone className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Get APK</span>
+              <span className="hidden md:inline">Get APK</span>
             </a>
 
             {/* About / Landing Page toggle */}

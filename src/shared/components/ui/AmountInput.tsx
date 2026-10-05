@@ -51,6 +51,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </span>
         <input
           type="text"
+          aria-label={label}
           inputMode="decimal"
           disabled={disabled}
           value={displayValue}
