@@ -8,6 +8,7 @@ import { GoalsView } from './views/GoalsView';
 import { PartnerView } from './views/PartnerView';
 import { VacationView } from './views/VacationView';
 import { PastVacationsView } from './views/PastVacationsView';
+import { StocksView } from './views/StocksView';
 import { LandingPageView } from './views/LandingPageView';
 import { AddTransactionModal } from './components/AddTransactionModal';
 import { AddAccountModal } from './components/AddAccountModal';
@@ -76,6 +77,10 @@ export const App: React.FC = () => {
         <LandingPageView
           onChooseGuest={() => setShowLanding(false)}
           onOpenAuth={() => setIsAuthOpen(true)}
+          onOpenStocks={() => {
+            setShowLanding(false);
+            setActiveTab('stocks');
+          }}
         />
         <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       </>
@@ -105,6 +110,7 @@ export const App: React.FC = () => {
             onOpenAddAccount={() => setIsAddAccountOpen(true)}
             onDeleteTransaction={handleDeleteTransaction}
             onOpenCashQuickSpend={(acc) => setCashQuickSpendAccount(acc)}
+            onNavigateStocks={() => setActiveTab('stocks')}
           />
         )}
 
@@ -181,6 +187,8 @@ export const App: React.FC = () => {
             onNavigatePastVacations={() => setActiveTab('past-vacations')}
           />
         )}
+
+        {activeTab === 'stocks' && <StocksView />}
 
         {activeTab === 'past-vacations' && (
           <PastVacationsView

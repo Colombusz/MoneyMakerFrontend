@@ -1,12 +1,11 @@
 import React from 'react';
 import {
   LayoutDashboard,
-  Calendar as CalendarIcon,
-  Repeat,
   Target,
   Users,
   Plus,
-  Palmtree
+  Palmtree,
+  TrendingUp
 } from 'lucide-react';
 import { NavTab } from './Navbar';
 
@@ -23,7 +22,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
 }) => {
   const tabs = [
     { id: 'dashboard' as NavTab, label: 'Home', icon: LayoutDashboard },
-    { id: 'calendar' as NavTab, label: 'Calendar', icon: CalendarIcon },
+    { id: 'stocks' as NavTab, label: 'Stocks', icon: TrendingUp },
     { id: 'add' as const, label: 'Add', icon: Plus, isAction: true },
     { id: 'goals' as NavTab, label: 'Goals', icon: Target },
     { id: 'partner' as NavTab, label: 'Partner', icon: Users },
