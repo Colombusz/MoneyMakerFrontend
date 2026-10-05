@@ -11,6 +11,8 @@ interface ImportMetaEnv {
   readonly VITE_API_URL: string;
   /** Dev-server port, e.g. `5173` */
   readonly VITE_PORT: string;
+  /** Alpha Vantage API Key for US Stocks Monitoring & Prediction */
+  readonly VITE_ALPHA_VANTAGE_API_KEY?: string;
 }
 
 interface ImportMeta {
