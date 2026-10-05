@@ -7,7 +7,7 @@ import {
   SearchMatchItem
 } from '../types/stocks';
 
-const ALPHA_VANTAGE_KEY = '8DNU0CNY2QIZF0UI';
+const ALPHA_VANTAGE_KEY = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY || '';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
 // In-memory cache for fast tab switches
